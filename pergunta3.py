@@ -1,4 +1,5 @@
 def analyze_board_game(board_size: int) -> dict:
+  # Analisa o jogo de tabuleiro simples com movimentos de 1, 2 ou 3 casas
   if not isinstance(board_size, int):
     raise TypeError("The board size must be an integer.")
 
@@ -12,6 +13,7 @@ def analyze_board_game(board_size: int) -> dict:
     length=minimum_turns
   )
 
+  # Probabilidade de atingir o final com o número mínimo de jogadas
   optimal_path_probability = optimal_combinations / (3 ** minimum_turns)
 
   combinations_without_looping = count_combinations_without_looping(board_size)
@@ -24,6 +26,7 @@ def analyze_board_game(board_size: int) -> dict:
 
 
 def count_combinations_with_exact_length(total: int, length: int) -> int:
+  # Conta sequências de movimentos que somam exatamente ao total
   dp = [[0] * (total + 1) for _ in range(length + 1)]
   dp[0][0] = 1
 
@@ -39,6 +42,7 @@ def count_combinations_with_exact_length(total: int, length: int) -> int:
 
 
 def count_combinations_without_looping(total: int) -> int:
+  # Conta todas as maneiras possíveis de chegar ao total sem restrição de número de movimentos
   dp = [0] * (total + 1)
   dp[0] = 1
 
